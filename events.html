@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>index</title>
+		<style>
+				#divA, #divS {
+			border: 5px solid black;
+			margin: 20px 0px;
+		}
+		</style>
+        	<script src="vectacorp/node_modules/jquery/dist/jquery.js"></script>
+
+		<script>
+			$(function() {
+				// 1
+				$("#button1").click(function() {
+					alert("The button has been clicked!");
+				});
+				
+				// 2
+				$("#button2").bind("click", function() {
+					alert("Binded button has been clicked!");
+				});
+								
+				// 3
+				$("#button3").on("click", function() {
+					alert("Button - on was clicked!");
+				});
+				
+				// 4
+				$(".button4").on("click", function() {
+					alert("The button x clicked!");
+				});
+				
+				
+
+				$("#divA").height("400px");
+		$("#divA").width("400px");
+		$("#divA").on("mouseenter", function () {
+			alert("Mouse entered the div element");
+		})
+		$("#divA").on("mouseleave", function () {
+			alert("Mouse left the div element");
+		})
+		$("#divA").on("click", function () {
+			alert("Mouse clicked in the div element");
+		})
+
+				$("#divS").height("400px");
+		$("#divS").width("400px");
+		$("#divS").on("mouseenter", function () {
+			$("span").text("Mouse entered the span element");
+		})
+		$("#divS").on("mouseleave", function () {
+			$("span").text("Mouse left the span element");
+		})
+		$("#divS").on("click", function () {
+			$("span").text("Mouse clicked in the span element");
+		})
+			
+				// 7
+				
+				$("a").on("click", "a", function(event) {
+					event.preventDefault();
+					$("a").css("color", "red");
+					alert(event.target.nodeName);
+				});
+				
+				
+				// 8
+				$(window).resize(function() {
+					$("#divA").html("Width: " + $(window).width() + " Height: " + $(window).height());
+
+				});
+
+				// 9
+				
+				$("input#bg").on({
+					focus: function() {
+						$(this).css("background", "#EDEDED");
+					},
+					blur: function() {
+						$(this).css("background", "#FFFFFF");
+					}
+				});
+				
+				
+				// 10
+				
+				$("body").on({
+					submit: function(event) {
+						event.preventDefault();
+						if ($("#name").val().length > 0) {
+							$("#name").css("border", "1px solid green");
+						} else {
+							alert("Name is a required field");
+							$("#name").css("border", "1px solid red");
+						}
+						if ($("#email").val().length > 0) {
+							$("#email").css("border", "1px solid green");
+						} else {
+							alert("Email is a required field");
+							$("#email").css("border", "1px solid red");
+						}
+					}
+				}, "form");
+				
+			});
+		</script>
+	</head>
+
+	<body>
+		<button id="button1">Button</button>
+		<button id="button2">Button - Binded</button>
+		<button id="button3">Button - On</button>
+	
+		<button class="button4">Button - Class 1</button>
+		<button class="button4">Button - Class 2</button>
+	
+		<div id="divA"></div>
+		<div id="divS"></div>
+		<span>Mouse: </span>
+	
+		<br>
+		<a href="http://modulemedia.com">Link to ModuleMedia</a>
+	
+		<br>
+		<div id="changedSize"></div>
+	
+		<br>
+		Background Text Box: <input type="text" name="bg" id="bg">
+	
+		<br> <br>
+		<form>
+			Name: <input type="text" name="name" id="name">
+			Email: <input type="email" name="email" id="email">
+			<button type="submit">Submit</button>
+		</form>
+	</body>
+</html>
